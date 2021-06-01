@@ -1,0 +1,116 @@
+
+{%load static%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+{% block content %}
+
+<script>type="text/javascript"
+
+function answers()
+{
+    if (document.getElementById("option_one").checked == true) {
+        //document.getElementById("option_one").value = 1;
+        selectedanswer=document.querySelector('input[name=ans]:checked').value;
+        document.getElementById("option_two").disabled = true;
+        document.getElementById("option_three").disabled = true;
+        document.getElementById("option_four").disabled = true;
+    }
+    else if (document.getElementById("option_two").checked == true) {
+        //document.getElementById("option_one").value = 1;
+        selectedanswer=document.querySelector('input[name=ans]:checked').value;
+        document.getElementById("option_one").disabled = true;
+        document.getElementById("option_three").disabled = true;
+        document.getElementById("option_four").disabled = true;
+        
+    }
+    else if (document.getElementById("option_three").checked == true) {
+        //document.getElementById("option_one").value = 1;
+        selectedanswer=document.querySelector('input[name=ans]:checked').value;
+        document.getElementById("option_one").disabled = true;
+        document.getElementById("option_two").disabled = true;
+        document.getElementById("option_four").disabled = true;
+        
+    }
+    else (document.getElementById("option_four").checked == true) 
+    {
+        //document.getElementById("option_one").value = 1;
+        selectedanswer=document.querySelector('input[name=ans]:checked').value;
+        document.getElementById("option_one").disabled = true;
+        document.getElementById("option_three").disabled = true;
+        document.getElementById("option_two").disabled = true;
+        
+    }
+
+
+    //actual code
+    //selectedanswer=document.querySelector('input[name=ans]:checked').value;
+    dbanswer=document.querySelector('input[name=answer]').value;
+    
+
+    if(selectedanswer==dbanswer ){
+
+        document.querySelector("#selectedcolor").textContent='your answer is correct :'+selectedanswer+'\n'
+        rightanswers+=1
+        
+    }
+   
+    else{
+
+        document.querySelector("#selectedcolor").textContent='Wrong Answer and Correct Answer is : '+dbanswer
+        
+
+    }
+   
+    
+
+
+
+
+
+   // document.querySelector("#selectedcolor").textContent='your answer is correct:'+selectedanswer 
+   
+
+   
+    
+}
+
+
+</script>
+
+
+{% for i in details %}
+<h2 >Q. {{i.question}}</h2>
+   <input type="radio" value="{{i.option_one}}"  onclick="answers()" id="option_one"  name="ans" > {{i.option_one}} <br>
+   <input type="radio" value="{{i.option_two}}"  onclick="answers()" id="option_two"  name="ans" > {{i.option_two}} <br>
+   <input type="radio" value="{{i.option_three}}"onclick="answers()" id="option_three"  name="ans" > {{i.option_three}} <br>
+   <input type="radio" value="{{i.option_four}}" onclick="answers()" id="option_four"  name="ans" > {{i.option_four}} <br>
+   <input type="hidden" value="{{i.answer}}" name="answer"><br> 
+  <!--<input type="submit"  value="submit"  onclick="answers()"> <br> <br>-->
+  
+      
+   
+
+
+  <b style="color: green;" id="selectedcolor"></b> 
+
+ <br><br> 
+ {%include 'testapp/pagination.html' with page=details%} <br> <br>
+   
+
+
+  
+
+
+{% endfor %}
+
+
+
+   <!-- <p><label for="save exam">save exam:</label>
+    <meter id="save exam" min="0" low="40" high="90" max="100" value="25"></meter></p>  -->
+<div class="container" align="center">
+    
+    <form  method='POST'></form>
+        <a class="btn btn-success" href="/results">Save Exam</a>
+    </form>
+</div>
+{% endblock %}

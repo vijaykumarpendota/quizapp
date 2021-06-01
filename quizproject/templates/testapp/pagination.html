@@ -1,0 +1,27 @@
+
+{%load static%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+{% block content %}
+<div class="paginator" align="center">
+   <!--
+    <span>
+       {%if page.has_previous%}
+
+           <a href="?page={{page.previous_page_number}}">Previous</a>&nbsp
+       {%endif%}
+    -->
+    </span>
+            {{page.number}} of {{page.paginator.num_pages}} &nbsp
+    <span>
+       {%if page.has_next%}
+
+           <a class="btn btn-info" target ="_self" href="?page={{page.next_page_number}}"> Submit </a>
+       {%endif%}
+
+    </span>
+
+
+
+</div>
+{% endblock %}

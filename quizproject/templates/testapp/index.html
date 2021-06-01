@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block content %}
+   
+<div class="container">
+    <h1>Hello Welcome to the Quiz.. </h1>
+    <h4>Click Strat Button to Take the  Quiz...</h4>
+
+    {% if results %}
+
+         {% for result in results %}
+
+           <a target ="_blank" class="btn btn-success" href="/{{result.id}}/detail"> Start {{result.course_name}} Quiz</a><br><br>
+             
+
+            {% endfor %} 
+
+    {% else %}
+          <h1>No quiz is availlabe write now..! as soon as possible we will update it.</h1>
+
+    {% endif %}
+
+</div>
+
+
+
+
+{% endblock %}
